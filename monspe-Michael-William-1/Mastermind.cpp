@@ -17,7 +17,7 @@ Mastermind::Mastermind(int length, int number) {
 std::vector<int> Mastermind::submit_guess(std::vector<int> guesses) {
   std::vector<int> result = std::vector<int>(guesses.size());
   std::vector<unsigned char> used = std::vector<unsigned char>(guesses.size());
-  std::vector<int> response = {0,0};
+  std::vector<int> response = std::vector<int>(2,0);
   int guess_index = 0;
   for (int i = 0; i < solution.size(); i++) {
     result[i] = UINT8_MAX;
