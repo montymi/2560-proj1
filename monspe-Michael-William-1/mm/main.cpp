@@ -2,20 +2,21 @@
 #include <stdint.h>
 #include <vector>
 #include "../Code.hpp"
+#include "../Mastermind.hpp"
+  
+int gamemode;
+std::vector<int> results = {0, 0};
+int length, range;
+std::vector<std::vector<int>> guesses;
 
 int main() {
-  int gamemode;
-  std::vector<int> results = {0, 0};
-  int length, range;
-  std::vector<std::vector<int>> guesses;
   std::cout << "Welcome to Mastermind!\n \
                 Select gamemode below:\n \
                 [1] Testing\n \
                 [2] Play\n \
                 Enter gamemode number: ";
   std::cin >> gamemode;
-  switch (gamemode) {
-    case 1:
+  if (gamemode == 1) {
       // part a: Test guesses
       length = 5;
       range = 6;
@@ -28,19 +29,21 @@ int main() {
           std::cout << guesses[i][j] << " ";
         }
         if (!game.establishGuessCode(guesses[i])){
-          break;
+          return -1; // error
         }
-        results[0] = game.checkCorrect(); // pass in object of Code guess?
-        results[1] = game.checkIncorrect(); // same as above
-        std::cout << results[0] << " " << results[1] << std::endl;
+        //results[0] = game.checkCorrect(); // pass in object of Code guess?
+        //results[1] = game.checkIncorrect(); // same as above
+        //std::cout << results[0] << " " << results[1] << std::endl;
       }
 
-      break;
-    case 2:
+  } else if (gamemode == 2) {
+      std::cout << "Please enter game length and digit range\n";
+      std::cin >> length >> range;
+      Mastermind Game(length, range);
       // part b: Play Game
-      std::cout << "Hello";
-      break;
-    default: std::cout << "Please enter either 1 or 2\n";
+      Game.PlayGame();
+  } else { 
+      std::cout << "Please enter either 1 or 2\n";
   }
   return 1;
 }
