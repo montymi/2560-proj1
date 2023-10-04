@@ -18,7 +18,6 @@ std::vector<int> Mastermind::submit_guess(std::vector<int> guesses) {
   std::vector<int> result = std::vector<int>(guesses.size());
   std::vector<unsigned char> used = std::vector<unsigned char>(guesses.size());
   std::vector<int> response = std::vector<int>(2,0);
-  int guess_index = 0;
   for (int i = 0; i < solution.size(); i++) {
     result[i] = UINT8_MAX;
     used[i] = 0;
@@ -59,7 +58,7 @@ void Mastermind::PlayGame(void) {
   int turn = 0;
   std::cout
       << "Each guess should be one line with " << solution.size()
-      << " numbers, separated by spaces.\nEach number should be between 1 and "
+      << " numbers, separated by spaces.\nEach number should be between 0 and "
       << color_count << std::endl;
   while (turn < MASTERMIND_MAX_GUESSES) {
     std::cout << "Guess " << turn + 1 << ": ";
@@ -67,9 +66,9 @@ void Mastermind::PlayGame(void) {
       std::cin >> guess[i];
     }
     for (int i = 0; i < solution.size(); i++) {
-      if (guess[i] < 0 || guess[i] >= color_count) {
+      if (guess[i] < 0 || guess[i] > color_count) {
         std::cout << "Invalid guess. All guesses must be between 0 and "
-                  << color_count - 1 << std::endl;
+                  << color_count << std::endl;
         error_flag = true;
         break;
       }
