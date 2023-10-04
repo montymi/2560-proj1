@@ -7,6 +7,7 @@ class Code{
     int checkIncorrect(Code guess);
     bool confirmValue(int position, int value);
     void createRandomCode(void);
+    bool establishGuessCode(std::vector<int> guesses);
     int getLength();
     int getNumValues();
     bool operator==(Code rhs);
