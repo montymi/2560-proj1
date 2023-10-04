@@ -18,6 +18,13 @@ class Code{
     Code(int length, int num_values);
     
     /**
+     * @brief gets Code object's stored entry
+     * 
+     * @retval vector<int>
+     */
+    std::vector<int> getCode();
+
+    /**
      * @brief counts the number of correct number, correct position
      * 
      * @param guess: the guessed code

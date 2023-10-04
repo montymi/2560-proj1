@@ -11,6 +11,11 @@ Code::Code(int length, int num_values)
   this->num_values = num_values;
 }
 
+std::vector<int> Code::getCode()
+{
+  return code;
+}
+
 
 int Code::checkCorrect(Code guess)
 {
@@ -75,7 +80,7 @@ bool Code::establishGuessCode(std::vector<int> guesses)
 {
   if(guesses.size() != length)
     return false;
-  if (*std::max_element(guesses.begin(), guesses.end()) >= num_values || *std::min_element(guesses.begin(), guesses.end()) < 0)
+  if (*std::max_element(guesses.begin(), guesses.end()) >= num_values || *std::min_element(guesses.begin(), guesses.end()) < 0) // changed this 
     return false;
   code = std::vector<int>(guesses.size());
   for (int i = 0; i < guesses.size(); i++)
