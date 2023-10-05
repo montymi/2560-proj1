@@ -9,7 +9,7 @@ class Response
     int getCorrect(void);
     int getIncorrect(void);
     friend bool operator==(Response lhs, Response rhs);
-    friend ostream& operator<<(ostream& os, Response rhs);
+    friend std::ostream& operator<<(std::ostream& os, Response rhs);
   private:
     int correct;
     int incorrect;

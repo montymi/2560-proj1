@@ -27,7 +27,7 @@ bool operator==(Response lhs, Response rhs)
   return false;
 }
 
-ostream& operator<<(ostream& os, Response rhs)
+std::ostream& operator<<(std::ostream& os, Response rhs)
 {
   return os;
 }
