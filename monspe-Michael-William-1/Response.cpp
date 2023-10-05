@@ -1,4 +1,6 @@
 #include "Response.hpp"
+#include "Code.hpp"
+#include <vector>
 #include <iostream>
 
 Response::Response(int num_correct, int num_incorrect)
@@ -7,9 +9,10 @@ Response::Response(int num_correct, int num_incorrect)
   incorrect = num_incorrect;
 }
 
-std::vector<unsigned char> Response::check_response(std::vector<int> guess, std::vector<int> solution);
+void Response::check_response(Code guess, Code solution)
 {
-  return vector<int>(0);
+  correct = solution.checkCorrect(guess);
+  incorrect = solution.checkIncorrect(guess);
 }
 
 int Response::getCorrect(void)
@@ -24,11 +27,12 @@ int Response::getIncorrect(void)
 
 bool operator==(Response lhs, Response rhs)
 {
-  return false;
+  return (lhs.correct == rhs.correct && lhs.incorrect == rhs.incorrect);
 }
 
 std::ostream& operator<<(std::ostream& os, Response rhs)
 {
+  os << "Results: correct: " << rhs.getCorrect() << ", incorrect: " << rhs.getIncorrect();
   return os;
 }
 

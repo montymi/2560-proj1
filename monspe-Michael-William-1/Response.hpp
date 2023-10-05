@@ -1,11 +1,12 @@
 #include <vector>
 #include <iostream>
+#include "Code.hpp"
 
 class Response
 {
   public:
     Response(int num_correct, int num_incorrect);
-    std::vector<unsigned char> check_response(std::vector<int> guess, std::vector<int> solution);
+    void check_response(Code guess, Code solution);
     int getCorrect(void);
     int getIncorrect(void);
     friend bool operator==(Response lhs, Response rhs);
