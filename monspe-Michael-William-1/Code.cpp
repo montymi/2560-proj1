@@ -97,8 +97,3 @@ int Code::getNumValues(void)
 {
   return num_values;
 }
-
-bool Code::operator==(Code rhs)
-{
-  return checkCorrect(rhs) == length;
-}

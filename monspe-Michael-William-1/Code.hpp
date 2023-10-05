@@ -73,14 +73,6 @@ class Code{
      * @brief getter for number of possible values
      */
     int getNumValues();
-    
-    /**
-     * @brief equivalence operater
-     * 
-     * @param rhs: right hand side Code of equals sign
-     * @retval true if all codes and positions match
-     */
-    bool operator==(Code rhs);
 
   private:
     std::vector<int> code;
