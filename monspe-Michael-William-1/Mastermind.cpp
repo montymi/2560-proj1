@@ -25,7 +25,6 @@ std::vector<int> Mastermind::submit_guess(std::vector<int> guesses) {
 
   if (guesses.size() != solution.size())
     return result;
-  int count = 0;
   for (int i = 0; i < solution.size(); i++) {
     if (guesses[i] == solution[i]) {
       result[i] = 2;
