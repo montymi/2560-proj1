@@ -10,7 +10,7 @@ class Mastermind
     Mastermind(int n, int m);
     void getSecret(void);
     Code humanGuess(void);
-    // Response& getResponse(void);
+    Response getResponse(Code guess);
     bool isSolved(Response& check);
     void PlayGame(void);
   private:
