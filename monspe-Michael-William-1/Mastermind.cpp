@@ -13,6 +13,7 @@ Mastermind::Mastermind(int n, int m) : n(n), m(m), game(n, m) {}
 
 void Mastermind::getSecret()
 {
+    std::cout << "Secret: ";
     for (int i = 0; i < game.getCode().size(); ++i) {std::cout << game.getCode()[i];}
     std::cout << std::endl;
 }
@@ -21,11 +22,7 @@ Code Mastermind::humanGuess()
 {
     Code human(n, m);
     std::vector<int> guess = std::vector<int>(n);
-    std::cout << "Guess (separated by spaces): ";
-    for (int i = 0; i < n; ++i)
-    {
-        std::cin >> guess[i];
-    }
+    for (int i = 0; i < n; ++i) { std::cin >> guess[i]; }
     for (int k = 0; k < n; ++k)
     {
         if (guess[k] >= m || guess[k] < 0) { return Code(0,0); }
@@ -50,9 +47,11 @@ void Mastermind::PlayGame()
 {
     this->game.createRandomCode();
     getSecret();
-    Code input = humanGuess();
-    Response results = getResponse(input);
-    for (int i = 0; i < input.getCode().size(); ++i) {std::cout << input.getCode()[i];}
-    std::cout << std::endl;
-    if (isSolved(results)) { std::cout << "Solved!\n"; }
+    std::cout << "Guess (separated by spaces):\n";
+    for (int round = 1; round <= 10; ++round){
+        Code input = humanGuess();
+        Response results = getResponse(input);
+        std::cout << results << std::endl;
+        if (isSolved(results)) { std::cout << "Solved!\n"; break;}
+    }
 }
