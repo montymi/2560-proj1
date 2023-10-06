@@ -16,7 +16,7 @@ int length, range, num;
 std::vector<std::vector<int>> guess_dir;
 
 int main() {
-  std::cout << "Welcome to Mastermind!\n This program tests the implementation of the Code classn\n";
+  std::cout << "Welcome to Mastermind!\n";
   // part a: Test guesses
   length = 5;
   range = 7;
@@ -27,7 +27,7 @@ int main() {
   guess_dir.push_back({2, 1, 2, 2, 2});
   guess_dir.push_back({1, 3, 3, 4, 5});
   // guess_dir.push_back(secret.getCode()); // uncomment to show win screen
-  std::cout << "Round | Guess | Results\n";
+  std::cout << "  |   Guess   | Results\n";
   for (int i = 0; i < guess_dir.size(); ++i) {
     num = i + 1;
     if (num >= 12) {
@@ -44,7 +44,7 @@ int main() {
     
     results[0] = secret.checkCorrect(guess); // pass in object of Code guess?
     results[1] = secret.checkIncorrect(guess); // same as above
-    std::cout << "| " << results[0] << results[1] << std::endl;
+    std::cout << "|   " << results[0] << results[1] << std::endl;
     if (results[0] == length) {
       std::cout << "Congratulations! You beat Mastermind.\n";
       return 1;
