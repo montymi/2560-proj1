@@ -70,6 +70,7 @@ bool Code::confirmValue(int position, int value)
 
 void Code::createRandomCode(void)
 {
+  srand(time(NULL));
   for (int i = 0; i < length; i++)
   {
     code[i] = rand() % num_values;
