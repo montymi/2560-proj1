@@ -11,7 +11,7 @@ class Mastermind
     void getSecret(void);
     // Code& humanGuess(void);
     // Response& getResponse(void);
-    // bool isSolved(Response& check);
+    bool isSolved(Response& check);
     void PlayGame(void);
   private:
     int n, m;

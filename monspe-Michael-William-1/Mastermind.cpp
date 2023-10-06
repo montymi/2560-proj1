@@ -93,3 +93,9 @@ void Mastermind::PlayGame()
 //     error_flag = false;
 //   }
 // }
+
+bool Mastermind::isSolved(Response& check)
+{
+  return (check.getCorrect() == n);
+}
+
