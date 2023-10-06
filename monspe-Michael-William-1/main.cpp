@@ -4,24 +4,14 @@
 #include "Response.hpp"
 #include "Code.hpp"
 
-// int main() {
-//   std::cout << "Please enter game length and count\n";
-//   int length, count;
-//   std::cin >> length >> count;
-//   Mastermind game(length, count);
-//   game.PlayGame();
-// }
-
-int gamemode;
-std::vector<int> results = {0, 0};
-int length, range, num;
-std::vector<std::vector<int>> guess_dir;
-
 int main() {
+  int gamemode, length, range, num;
   std::cout << "Welcome to Mastermind!\nSelect gamemode below:\n[1] Testing\n[2] Play\nEnter gamemode number: ";
   std::cin >> gamemode;
   if (gamemode == 1) {
       // part a: Test guesses
+      std::vector<std::vector<int>> guess_dir;
+      std::vector<int> results = {0, 0};
       length = 5;
       range = 7;
       Code secret(length, range); // {game} instance of code class
@@ -34,7 +24,7 @@ int main() {
       std::cout << "Round | Guess | Results\n";
       for (int i = 0; i < guess_dir.size(); ++i) {
         num = i + 1;
-        if (num >= 12) {
+        if (num >= 10) {
           std::cout << "Out of turns. You lost";
           return 1;
         }
@@ -59,11 +49,11 @@ int main() {
         std::cout << secret.getCode()[k];
       }
   } else if (gamemode == 2) {
+      // part b: Play Game
       std::cout << "Length and digit range (separated by spaces): ";
       std::cin >> length >> range;
       Mastermind Game(length, range);
       Mastermind Test;
-      // part b: Play Game
       Game.PlayGame();
   } else { 
       std::cout << "Please enter either 1 or 2\n";
