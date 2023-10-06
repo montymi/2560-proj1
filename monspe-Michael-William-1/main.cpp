@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdint.h>
 #include "Mastermind.hpp"
+#include "Response.hpp"
 #include "Code.hpp"
 
 // int main() {
@@ -60,9 +61,10 @@ int main() {
   } else if (gamemode == 2) {
       std::cout << "Please enter game length and digit range\n";
       std::cin >> length >> range;
-      //Mastermind Game(length, range);
+      Mastermind Game(length, range);
+      Mastermind Test;
       // part b: Play Game
-      //Game.PlayGame();
+      Game.PlayGame();
   } else { 
       std::cout << "Please enter either 1 or 2\n";
   }

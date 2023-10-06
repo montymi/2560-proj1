@@ -1,17 +1,24 @@
-#include <vector>
-#include <iostream>
-#include "Code.hpp"
+#ifndef RESPONSE_HPP
+#define RESPONSE_HPP
 
-class Response
-{
-  public:
-    Response(int num_correct, int num_incorrect);
-    void check_response(Code guess, Code solution);
-    int getCorrect(void);
-    int getIncorrect(void);
-    friend bool operator==(Response lhs, Response rhs);
-    friend std::ostream& operator<<(std::ostream& os, Response rhs);
-  private:
-    int correct;
-    int incorrect;
+#include <iostream>
+
+class Response {
+public:
+  Response();
+  Response(int correct, int incorrect);
+
+  void setCorrect(int correct);
+  void setIncorrect(int incorrect);
+  int getCorrect() const;
+  int getIncorrect() const;
+    
+  bool operator==(const Response& rhs) const;
+
+  friend std::ostream& operator<<(std::ostream& os, const Response& rhs);
+private:
+  int numCorrect;
+  int numIncorrect;
 };
+
+#endif

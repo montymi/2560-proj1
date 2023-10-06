@@ -1,13 +1,19 @@
 #include <vector>
+#include <iostream>
 #include "Response.hpp"
+#include "Code.hpp"
 
 class Mastermind
 {
   public:
-    Mastermind(int length, int number);
+    Mastermind();
+    Mastermind(int n, int m);
+    void getSecret(void);
+    // Code& humanGuess(void);
+    // Response& getResponse(void);
+    // bool isSolved(Response& check);
     void PlayGame(void);
   private:
-    std::vector<int> solution;
-    int color_count;
-    std::vector<int> submit_guess(std::vector<int> guesses);
+    int n, m;
+    Code game;
 };

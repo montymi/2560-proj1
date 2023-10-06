@@ -1,38 +1,29 @@
 #include "Response.hpp"
-#include "Code.hpp"
-#include <vector>
-#include <iostream>
 
-Response::Response(int num_correct, int num_incorrect)
-{
-  correct = num_correct;
-  incorrect = num_incorrect;
+Response::Response() : numCorrect(0), numIncorrect(0) {}
+
+Response::Response(int correct, int incorrect)
+    : numCorrect(correct), numIncorrect(incorrect) {}
+
+void Response::setCorrect(int correct) {
+    this->numCorrect = correct;
+}
+void Response::setIncorrect(int incorrect) {
+    this->numIncorrect = incorrect;
+}
+int Response::getCorrect() const {
+    return this->numCorrect;
+}
+int Response::getIncorrect() const {
+    return this->numIncorrect;
+}
+    
+bool Response::operator==(const Response& rhs) const {
+    if (this->numCorrect == rhs.getCorrect() && this->numIncorrect == rhs.getIncorrect()) { return true; }
+    return false;
 }
 
-void Response::check_response(Code guess, Code solution)
-{
-  correct = solution.checkCorrect(guess);
-  incorrect = solution.checkIncorrect(guess);
+std::ostream& operator<<(std::ostream& os, const Response& rhs) {
+    os << "Correct: " << rhs.getCorrect() << ", Incorrect: " << rhs.getIncorrect();
+    return os;
 }
-
-int Response::getCorrect(void)
-{
-  return correct;
-}
-
-int Response::getIncorrect(void)
-{
-  return incorrect;
-}
-
-bool operator==(Response lhs, Response rhs)
-{
-  return (lhs.correct == rhs.correct && lhs.incorrect == rhs.incorrect);
-}
-
-std::ostream& operator<<(std::ostream& os, Response rhs)
-{
-  os << "Results: correct: " << rhs.getCorrect() << ", incorrect: " << rhs.getIncorrect();
-  return os;
-}
-
