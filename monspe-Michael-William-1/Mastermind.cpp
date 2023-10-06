@@ -13,14 +13,33 @@ Mastermind::Mastermind(int n, int m) : n(n), m(m), game(n, m) {}
 
 void Mastermind::getSecret()
 {
-    for (int i = 0; i < this->game.getCode().size(); ++i) {std::cout << game.getCode()[i];}
+    for (int i = 0; i < this->game.getCode().size(); ++i) {std::cout << this->game.getCode()[i];}
     std::cout << std::endl;
+}
+
+Code Mastermind::humanGuess()
+{
+    Code human(this->n, this->m);
+    std::vector<int> guess = std::vector<int>(this->n);
+    std::cout << "Guess (separated by spaces): ";
+    for (int i = 0; i < this->n; ++i)
+    {
+        std::cin >> guess[i];
+    }
+    for (int k = 0; k < this->n; ++k)
+    {
+        if (guess[k] >= this->m || guess[k] < 0) { return Code(0,0); }
+    }
+    if (human.establishGuessCode(guess)) { return human; }
 }
 
 void Mastermind::PlayGame()
 {
     this->game.createRandomCode();
     getSecret();
+    Code test = humanGuess();
+    for (int i = 0; i < test.getCode().size(); ++i) {std::cout << test.getCode()[i];}
+    std::cout << std::endl;
 }
 
 // std::vector<int> Mastermind::submit_guess(std::vector<int> guesses) {

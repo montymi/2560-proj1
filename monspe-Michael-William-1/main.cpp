@@ -59,7 +59,7 @@ int main() {
         std::cout << secret.getCode()[k];
       }
   } else if (gamemode == 2) {
-      std::cout << "Please enter game length and digit range\n";
+      std::cout << "Length and digit range (separated by spaces): ";
       std::cin >> length >> range;
       Mastermind Game(length, range);
       Mastermind Test;
