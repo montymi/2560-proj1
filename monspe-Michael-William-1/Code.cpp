@@ -50,7 +50,7 @@ int Code::checkIncorrect(Code guess)
     {
       if(check_idx == guess_idx) //don't check same position
         continue;
-      if(used_guess[guess_idx] || used_check[guess_idx])
+      if(used_guess[guess_idx] || used_check[check_idx])
         continue;
       if(guess.confirmValue(guess_idx, code[check_idx]))
       {

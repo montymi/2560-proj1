@@ -13,7 +13,8 @@ Mastermind::Mastermind(int n, int m) : n(n), m(m), game(n, m) {}
 
 void Mastermind::getSecret()
 {
-    for (int i = 0; i < game.getCode().size(); ++i) {std::cout << "Secret: " << game.getCode()[i];}
+    std::cout << "Secret: ";
+    for (int i = 0; i < game.getCode().size(); ++i) {std::cout << game.getCode()[i];}
     std::cout << std::endl;
 }
 
@@ -21,10 +22,7 @@ Code Mastermind::humanGuess()
 {
     Code human(n, m);
     std::vector<int> guess = std::vector<int>(n);
-    for (int i = 0; i < n; ++i)
-    {
-        std::cin >> guess[i];
-    }
+    for (int i = 0; i < n; ++i) { std::cin >> guess[i]; }
     for (int k = 0; k < n; ++k)
     {
         if (guess[k] >= m || guess[k] < 0) { return Code(0,0); }
