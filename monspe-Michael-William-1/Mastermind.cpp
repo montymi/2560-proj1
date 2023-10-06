@@ -28,6 +28,7 @@ Code Mastermind::humanGuess()
         if (guess[k] >= m || guess[k] < 0) { return Code(0,0); }
     }
     if (human.establishGuessCode(guess)) { return human; }
+    return Code(0,0);
 }
 
 Response Mastermind::getResponse(Code guess)
