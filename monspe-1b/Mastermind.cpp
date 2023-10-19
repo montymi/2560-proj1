@@ -28,7 +28,7 @@ Code Mastermind::humanGuess()
         if (guess[k] >= m || guess[k] < 0) { return Code(0,0); }
     }
     if (human.establishGuessCode(guess)) { return human; }
-    return Code(0,0);
+    return Code(-1,-1);
 }
 
 Response Mastermind::getResponse(Code guess)
@@ -48,10 +48,16 @@ void Mastermind::PlayGame()
 {
     this->game.createRandomCode();
     getSecret();
-    std::cout << "Guess (separated by spaces):\n";
     for (int round = 1; round <= 10; ++round){
+        std::cout << "Guess " << round << " (separated by spaces):\n";
         Code input = humanGuess();
         Response results = getResponse(input);
+        if(results.getCorrect() == -1)
+        {
+            std::cout << "Invalid guess, guesses must be between 0 and " << m-1 << "\n";
+            round--;
+            continue;
+        }
         std::cout << results << std::endl;
         if (isSolved(results)) { std::cout << "Solved!\n"; break;}
     }
