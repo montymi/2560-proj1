@@ -2,6 +2,7 @@
 #include <cmath>
 #include "Deck.h"
 #include "Card.h"
+#include <ctime>
 
 /********** PUBLIC FUNCTION DEFINITIONS **************/
 
@@ -29,6 +30,7 @@ void Deck::shuffle(void)
 {
   int cards = 0;
   Card* current_node = this->header;
+  srand(time(NULL));
   while (current_node->getNext() != nullptr)
   {
     cards++;
