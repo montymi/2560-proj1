@@ -1,3 +1,11 @@
+/**
+ * @file Deck.h
+ *
+ * @brief Contains the data and functions for a single node on
+ *  a singly linked list of playing cards, as well as enums for
+ *  suits and card values
+ */
+
 #include <iostream>
 #include "Card.h"
 
