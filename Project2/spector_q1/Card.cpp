@@ -25,7 +25,7 @@ void Card::setSuit(SUIT_T suit)
   this->suit = suit;
 }
 
-void Card::setNextPointer(Card* card)
+void Card::setNext(Card* card)
 {
   next = card;
 }
@@ -53,13 +53,13 @@ void* Card::operator new(size_t size)
 
 std::ostream& operator<<(std::ostream& os, Card rhs)
 {
-  if (rhs.value >= CARDVALUE_NUMVALUES || rhs.value < 0 || rhs.suit >= SUIT_NUMSUITS || rhs.suit < 0)
+  if (rhs.value >= CARDVALUE_NUM || rhs.value < 0 || rhs.suit >= SUIT_NUM || rhs.suit < 0)
   {
     os << "INVALID CARD\n";
   }
   else
   {
-    os << getValueString(rhs.value) << " of " << getSuitString(rhs.suit) << "\n";
+    os << getValueString(rhs.value) << "\tof " << getSuitString(rhs.suit) << "\n";
   }
   return os;
 }

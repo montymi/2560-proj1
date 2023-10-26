@@ -11,16 +11,16 @@ Deck::Deck(void)
   this->header = new Card((CARDVALUE_T) 0, (SUIT_T) 0);
   Card* current_card = this->header;
   Card* next_card;
-  for (int suit = 0; suit < (int) SUIT_NUMSUITS; suit++)
+  for (int suit = 0; suit < (int) SUIT_NUM; suit++)
   {
-    for(int value = 0; value < (int) CARDVALUE_NUMVALUES; value++)
+    for(int value = 0; value < (int) CARDVALUE_NUM; value++)
     {
       if (value == 0 && suit == 0)
       {
         continue;
       }
       next_card = new Card((CARDVALUE_T) value, (SUIT_T) suit);
-      current_card->setNextPointer(next_card);
+      current_card->setNext(next_card);
       current_card = current_card->getNext();
     }
   }
@@ -38,7 +38,7 @@ void Deck::shuffle(void)
   }
   current_node = this->header;
   Card* swap_node;
-  Card temp = Card(CARDVALUE_NUMVALUES, SUIT_NUMSUITS);
+  Card temp = Card(CARDVALUE_NUM, SUIT_NUM);
   while(cards > 0)
   {
     swap_node = current_node;

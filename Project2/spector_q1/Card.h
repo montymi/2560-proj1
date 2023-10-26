@@ -16,7 +16,7 @@ typedef enum SUIT_T{
   SUIT_DIAMONDS,
   SUIT_HEARTS,
   SUIT_SPADES,
-  SUIT_NUMSUITS,
+  SUIT_NUM,
 } SUIT_T;
 
 typedef enum CARDVALUE_T{
@@ -33,7 +33,7 @@ typedef enum CARDVALUE_T{
   CARDVALUE_JACK,
   CARDVALUE_QUEEN,
   CARDVALUE_KING,
-  CARDVALUE_NUMVALUES,
+  CARDVALUE_NUM,
 } CARDVALUE_T;
 
 class Card{
@@ -41,7 +41,7 @@ class Card{
     Card(CARDVALUE_T val, SUIT_T suit);
     void setValue(CARDVALUE_T val);
     void setSuit(SUIT_T suit);
-    void setNextPointer(Card* card);
+    void setNext(Card* card);
     Card* getNext(void);
     CARDVALUE_T getValue(void);
     SUIT_T getSuit(void);
