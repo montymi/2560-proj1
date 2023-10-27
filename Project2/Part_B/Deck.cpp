@@ -59,6 +59,17 @@ void Deck::shuffle(void)
   }
 }
 
+void Deck::replace(Card c)
+{
+  Card* last_card = header;
+  while (last_card->getNext() != nullptr)
+  {
+    last_card = last_card->getNext();
+  }
+  Card* added_card = new Card(c.getValue(), c.getSuit());
+  last_card->setNext(added_card);
+}
+
 std::ostream& operator<<(std::ostream& os, Deck rhs)
 {
   Card* current_card = rhs.header;
