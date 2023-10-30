@@ -17,8 +17,9 @@ class Deck
   public:
     Deck(void);
     void shuffle(void);
+    Card* getHeader(void);
     friend std::ostream& operator<<(std::ostream& os, Deck rhs);
-    ~Deck();
+    ~Deck(void);
   private:
     Card* header;
 };

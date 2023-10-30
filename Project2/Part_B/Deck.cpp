@@ -59,24 +59,31 @@ void Deck::shuffle(void)
   }
 }
 
+Card* Deck::getHeader(void)
+{
+  return this->header;
+}
+
 std::ostream& operator<<(std::ostream& os, Deck rhs)
 {
-  Card* current_card = rhs.header;
+  Card* current_card = rhs.getHeader();
   while(current_card != nullptr)
   {
     os << *current_card;
     current_card = current_card->getNext();
   }
+  std::cout << "Pre-deconstructor\n";
   return os;
 }
 
 Deck::~Deck()
 {
-  Card* current = header;
+  Card* current = this->header;
+  std::cout << "Head: " << header << std::endl;  // logging
   while (current != nullptr) {
     Card* next = current->getNext();
+    std::cout << "Next: " << next << std::endl;  // logging
     delete current;
     current = next;
   }
-  header = nullptr;
 }
