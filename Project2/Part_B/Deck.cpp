@@ -69,3 +69,14 @@ std::ostream& operator<<(std::ostream& os, Deck rhs)
   }
   return os;
 }
+
+Deck::~Deck()
+{
+  Card* current = header;
+  while (current != nullptr) {
+    Card* next = current->getNext();
+    delete current;
+    current = next;
+  }
+  header = nullptr;
+}
