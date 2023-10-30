@@ -64,6 +64,13 @@ Card* Deck::getHeader(void)
   return this->header;
 }
 
+Card* Deck::deal(void)
+{
+  Card* dealt = this->getHeader();
+  this->header = dealt->getNext();
+  return dealt;
+}
+
 std::ostream& operator<<(std::ostream& os, Deck rhs)
 {
   Card* current_card = rhs.getHeader();
