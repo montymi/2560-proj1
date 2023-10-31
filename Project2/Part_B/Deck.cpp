@@ -66,7 +66,7 @@ void Deck::replace(Card c)
   {
     last_card = last_card->getNext();
   }
-  Card* added_card = new Card(c.getValue(), c.getSuit());
+  Card* added_card = new Card(c);
   last_card->setNext(added_card);
 }
 
