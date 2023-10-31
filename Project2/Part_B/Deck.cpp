@@ -72,12 +72,11 @@ void Deck::replace(Card* card)
 // are both in a different branch
 {
   Card* head = this->header;
-  while (this->header != nullptr) {
-    this->header = this->header->getNext();
+  while (head->getNext() != nullptr) {
+    head = head->getNext();
   }
-  this->header = card;
-  this->header->setNext(nullptr);
-  this->header = head;
+  head->setNext(card);
+  card->setNext(nullptr);
   return;
 }
 
