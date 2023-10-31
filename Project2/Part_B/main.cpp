@@ -14,16 +14,3 @@ int main()
   delete deck;
   return 0;
 }
-
-void playFlip()
-{
-  std::string userInput;
-  std::cout << "Flip (Y/n): ";
-  std::cin >> userInput;
-
-  if (userInput.empty() || userInput == "Y" || userInput == "y") {
-      std::cout << "Flipping..." << std::endl;
-  } else {
-      std::cout << "Exiting." << std::endl;
-  }
-}
