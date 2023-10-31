@@ -59,14 +59,9 @@ void Deck::shuffle(void)
   }
 }
 
-Card* Deck::getHeader(void)
-{
-  return this->header;
-}
-
 Card* Deck::deal(void)
 {
-  Card* dealt = this->getHeader();
+  Card* dealt = this->header;
   this->header = dealt->getNext();
   dealt->setNext(nullptr);
   return dealt;
@@ -76,7 +71,7 @@ void Deck::replace(Card* card)
 // this is a bit ugly but worked best for now while the copy constructor and assignment operator
 // are both in a different branch
 {
-  Card* head = this->getHeader();
+  Card* head = this->header;
   while (this->header != nullptr) {
     this->header = this->header->getNext();
   }
@@ -88,7 +83,7 @@ void Deck::replace(Card* card)
 
 std::ostream& operator<<(std::ostream& os, Deck& rhs)
 {
-  Card* current_card = rhs.getHeader();
+  Card* current_card = rhs.header;
   while(current_card != nullptr)
   {
     os << *current_card;
