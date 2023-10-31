@@ -24,10 +24,8 @@ void playFlip()
   std::cin >> userInput;
 
   if (userInput.empty() || userInput == "Y" || userInput == "y") {
-      std::cout << "Continuing with the flip..." << std::endl;
-      // Place your flip code here
+      std::cout << "Flipping..." << std::endl;
   } else {
-      std::cout << "Exiting without flipping." << std::endl;
-      // Exit or return as needed
+      std::cout << "Exiting." << std::endl;
   }
 }
