@@ -16,9 +16,9 @@ Card::Card(CARDVALUE_T val, SUIT_T suit)
 }
 
 Card::Card(const Card& other) {
-  value = other.value;
-  suit = other.suit;
-  next = other.next; // TODO: ensure that we should copy the next var
+  this->value = other.value;
+  this->suit = other.suit;
+  this->next = (Card*) nullptr;
 }
 
 void Card::setValue(CARDVALUE_T val)
@@ -75,7 +75,7 @@ Card& Card::operator=(const Card& rhs)
   if (this != &rhs) {
     this->setValue(rhs.value);
     this->setSuit(rhs.suit);
-    next = rhs.next;
+    this->next = (Card*) nullptr;
   }
   return *this;
 }
