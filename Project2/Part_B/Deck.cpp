@@ -86,7 +86,7 @@ void Deck::replace(Card* card)
   return;
 }
 
-std::ostream& operator<<(std::ostream& os, Deck rhs)
+std::ostream& operator<<(std::ostream& os, Deck& rhs)
 {
   Card* current_card = rhs.getHeader();
   while(current_card != nullptr)
@@ -94,7 +94,6 @@ std::ostream& operator<<(std::ostream& os, Deck rhs)
     os << *current_card;
     current_card = current_card->getNext();
   }
-  std::cout << "Pre-deconstructor\n";
   return os;
 }
 

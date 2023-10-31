@@ -20,7 +20,7 @@ class Deck
     Card* getHeader(void);
     Card* deal(void);
     void replace(Card* card);
-    friend std::ostream& operator<<(std::ostream& os, Deck rhs);
+    friend std::ostream& operator<<(std::ostream& os, Deck& rhs);
     ~Deck(void);
   private:
     Card* header;
