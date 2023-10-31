@@ -39,15 +39,16 @@ typedef enum CARDVALUE_T{
 class Card{
   public:
     Card(CARDVALUE_T val, SUIT_T suit);
+    Card(const Card& other);
     void setValue(CARDVALUE_T val);
     void setSuit(SUIT_T suit);
     void setNext(Card* card);
     Card* getNext(void);
     CARDVALUE_T getValue(void);
     SUIT_T getSuit(void);
-    void* operator new(size_t size);
-    
+    void* operator new(size_t size);   
     friend std::ostream& operator<<(std::ostream& os, Card rhs);
+    Card& operator=(const Card& rhs);
   private:
     Card* next;
     CARDVALUE_T value;

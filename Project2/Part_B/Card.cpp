@@ -15,6 +15,12 @@ Card::Card(CARDVALUE_T val, SUIT_T suit)
   this->next = (Card*) nullptr;
 }
 
+Card::Card(const Card& other) {
+  this->value = other.value;
+  this->suit = other.suit;
+  this->next = (Card*) nullptr;
+}
+
 void Card::setValue(CARDVALUE_T val)
 {
   this->value = val;
@@ -62,6 +68,16 @@ std::ostream& operator<<(std::ostream& os, Card rhs)
     os << getValueString(rhs.value) << "\tof " << getSuitString(rhs.suit) << "\n";
   }
   return os;
+}
+
+Card& Card::operator=(const Card& rhs)
+{
+  if (this != &rhs) {
+    this->setValue(rhs.value);
+    this->setSuit(rhs.suit);
+    this->next = (Card*) nullptr;
+  }
+  return *this;
 }
 
 /********** PRIVATE FUNCTION DEFINITIONS *************/
