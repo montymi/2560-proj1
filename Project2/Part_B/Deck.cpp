@@ -59,7 +59,26 @@ void Deck::shuffle(void)
   }
 }
 
-std::ostream& operator<<(std::ostream& os, Deck rhs)
+Card* Deck::deal(void)
+{
+  Card* dealt = this->header;
+  this->header = dealt->getNext();
+  dealt->setNext(nullptr);
+  return dealt;
+}
+
+void Deck::replace(Card c)
+{
+  Card* last_card = header;
+  while (last_card->getNext() != nullptr)
+  {
+    last_card = last_card->getNext();
+  }
+  Card* added_card = new Card(c);
+  last_card->setNext(added_card);
+}
+
+std::ostream& operator<<(std::ostream& os, Deck& rhs)
 {
   Card* current_card = rhs.header;
   while(current_card != nullptr)
@@ -68,4 +87,16 @@ std::ostream& operator<<(std::ostream& os, Deck rhs)
     current_card = current_card->getNext();
   }
   return os;
+}
+
+Deck::~Deck()
+{
+  Card* current = this->header;
+  std::cout << "Head: " << header << std::endl;  // logging
+  while (current != nullptr) {
+    Card* next = current->getNext();
+    std::cout << "Next: " << next << std::endl;  // logging
+    delete current;
+    current = next;
+  }
 }
