@@ -31,7 +31,7 @@ void Deck::shuffle(void)
   int cards = 0;
   Card* current_node = this->header;
   srand(time(NULL));
-  while (current_node->getNext() != nullptr)
+  while (current_node != nullptr)
   {
     cards++;
     current_node = current_node->getNext();
