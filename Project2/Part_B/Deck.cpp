@@ -67,17 +67,15 @@ Card* Deck::deal(void)
   return dealt;
 }
 
-void Deck::replace(Card* card)
-// this is a bit ugly but worked best for now while the copy constructor and assignment operator
-// are both in a different branch
+void Deck::replace(Card c)
 {
-  Card* head = this->header;
-  while (head->getNext() != nullptr) {
-    head = head->getNext();
+  Card* last_card = header;
+  while (last_card->getNext() != nullptr)
+  {
+    last_card = last_card->getNext();
   }
-  head->setNext(card);
-  card->setNext(nullptr);
-  return;
+  Card* added_card = new Card(c);
+  last_card->setNext(added_card);
 }
 
 std::ostream& operator<<(std::ostream& os, Deck& rhs)
