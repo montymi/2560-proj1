@@ -1,21 +1,21 @@
 #include <iostream>
 #include "Deck.h"
 
+/********** PRIVATE FUNCTION DECLARATIONS ************/
+
+void playFlip(void);
+
+/******************** MAIN ***************************/
+
 int main()
 {
-  Deck* deck = new Deck();  // TODO: compare against Deck deck = Deck()
-  std::cout << *deck;       // which makes this << deck
-
-  for (int i = 0; i < 3; i++)
-  {
-    deck->shuffle();      // and this deck.shuffle()
-    std::cout  << "\n------ shuffle " << i + 1 << " ----\n\n" << *deck; // and this << deck
-  }
-  delete deck;          // this would be removed
+  playFlip();
   return 0;
 }
 
-void playFlip()
+/********** PRIVATE FUNCTION DEFINITIONS *************/
+
+void playFlip(void)
 {
   std::string userInput;
   std::cout << "Flip (Y/n): ";
