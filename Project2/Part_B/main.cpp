@@ -21,16 +21,11 @@ int main()
 void playFlip(Deck& deck)
 {
   bool play = true;
-  std::cout << "\nTop 24 cards:\n";
-  Card* currentCard = deck.deal();
-  std::vector<Card*> top24Cards = {currentCard};
+  std::vector<Card*> top24Cards;
   for (int i = 0; i < 24; i++) {
-      currentCard = deck.deal();
+      Card* currentCard = deck.deal();
       top24Cards.push_back(currentCard);
-      std::cout << i << "\t| " << *currentCard;
   }
-  std::cout << "\nRemaining cards in the deck:\n";
-  std::cout << deck;       // which makes this << deck
   std::string action;
   while (play) {
      std::cout << "\nDo you want to flip the next card? (Type 'flip' or 'quit'): ";
@@ -39,8 +34,14 @@ void playFlip(Deck& deck)
        std::cout << "Continuing...\n";
      }
      else if (action == "N" || action == "n") {
-       std::cout << "Current Score: ";
-       play = false;
+      std::cout << "Current Score: 1\n";
+      std::cout << "\nTop 24 cards:\n";
+      for (int i = 0; i < 24; i++) {
+        std::cout << i+1 << "\t| " << *top24Cards[i];
+      }
+      std::cout << "\nRemaining cards in the deck:\n";
+      std::cout << deck;       // which makes this << deck
+      play = false;
      }
      else {
        std::cout << "Please input a y/Y to flip or n/N to end\n";
