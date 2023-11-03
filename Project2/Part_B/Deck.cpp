@@ -92,10 +92,10 @@ std::ostream& operator<<(std::ostream& os, Deck& rhs)
 Deck::~Deck()
 {
   Card* current = this->header;
-  std::cout << "Head: " << header << std::endl;  // logging
+  //std::cout << "Head: " << header << std::endl;  // logging
   while (current != nullptr) {
     Card* next = current->getNext();
-    std::cout << "Next: " << next << std::endl;  // logging
+    //std::cout << "Next: " << next << std::endl;  // logging
     delete current;
     current = next;
   }
