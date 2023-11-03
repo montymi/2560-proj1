@@ -12,6 +12,11 @@
  * @retval -4 for lose all, -3 for set-to-one, -2 for lose half, -1 for 
  */
 void scoreCard(Card* c, int& score);
+/**
+ * @brief starts the game
+ *
+ * @param deck: pointer to main deck
+ */
 void playFlip(Deck* deck);
 
 int main()
@@ -45,8 +50,8 @@ void playFlip(Deck* deck)
       std::cout << "\nCard:\t" << *top24Cards[round];
       Card* drawn = top24Cards[round];
       scoreCard(drawn, score);
-      std::cout << "Score: " << score;
-      std::cout << "\n\nCurrent Hand:\n";
+      std::cout << "\nScore: " << score;
+      std::cout << "\nCurrent Hand:\n";
       for (int i = 0; i <= round; i++) {
         std::cout << *top24Cards[i];
       }
