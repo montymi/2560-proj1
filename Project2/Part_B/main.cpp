@@ -1,7 +1,16 @@
 #include <iostream>
 #include "Deck.h"
+#include "Card.h"
 
 void playFlip(Deck& deck);
+
+/**
+ * @brief returns the way a score would change as the result of a card 
+ * 
+ * @param c: card to check
+ * @retval -4 for lose all, -3 for set-to-one, -2 for lose half, -1 for 
+ */
+int scoreCard(Card* c);
 
 int main()
 {
@@ -77,5 +86,37 @@ void playFlip(Deck& deck)
      else {
        std::cout << "Please input a y/Y to flip or n/N to end\n";
      }
+  }
+}
+
+int scoreCard(Card c)
+{
+  int hearts = 0;
+  if (c.getSuit() == SUIT_HEARTS)
+  {
+    hearts = 1;
+  }
+  switch(c.getValue())
+  {
+    case CARDVALUE_ACE:
+      return hearts + 10;
+    case CARDVALUE_TWO:
+    case CARDVALUE_THREE:
+    case CARDVALUE_FOUR:
+    case CARDVALUE_FIVE:
+    case CARDVALUE_SIX:
+      return hearts - 4;
+    case CARDVALUE_SEVEN:
+      return hearts - 2;
+    case CARDVALUE_EIGHT:
+    case CARDVALUE_NINE:
+    case CARDVALUE_TEN:
+      return hearts;
+    case CARDVALUE_JACK:
+    case CARDVALUE_QUEEN:
+    case CARDVALUE_KING:
+      return hearts + 5;
+    default:
+      return -5;
   }
 }
