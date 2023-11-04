@@ -16,6 +16,7 @@ void scoreCard(Card* c, int& score);
  * @brief starts the game
  *
  * @param deck: pointer to main deck
+ * @retval void
  */
 void playFlip(Deck* deck);
 
@@ -96,9 +97,24 @@ void scoreCard(Card* c, int& score)
     case CARDVALUE_EIGHT:
       break;
     case CARDVALUE_SEVEN:
+      score = score / 2;
+      break;
+    case CARDVALUE_SIX:
+      score = 0;
+      break;
+    case CARDVALUE_FIVE:
+      score = 0;
+      break;
+    case CARDVALUE_FOUR:
+      score = 0;
+      break;
+    case CARDVALUE_THREE:
+      score = 0;
+      break;
+    case CARDVALUE_TWO:
+      score = 0;
       break;
     default: 
-      score = 0;
       break;
   }
   if (c->getSuit() == SUIT_HEARTS) { score += 1; }
