@@ -11,6 +11,7 @@ public:
   int getWidth(void);
   int getHeight(void);
   char getLetter(int col, int row);
+  void printGrid(void);
 private:
   std::vector<std::vector<char>> letters;
 };
