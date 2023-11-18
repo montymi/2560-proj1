@@ -11,7 +11,7 @@ public:
   void readWords(std::string filename);
   void printWords(void);
   void sortWords(void);
-  bool lookupWord(std::string word);
+  int lookupWord(std::string word);
 private:
   std::vector<std::string> wordlist;
 };
