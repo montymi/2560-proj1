@@ -7,6 +7,8 @@
 
 void convertToLower(char* str, int len);
 
+/******* PUBLIC DICTIONARY METHODS *************/
+
 Dictionary::Dictionary(void)
 {
   wordlist = std::vector<std::string>();
@@ -83,13 +85,15 @@ int Dictionary::lookupWord(std::string word)
   return i;
 }
 
+/******* PRIVATE FUNCTION DEFINITIONS **********/
+
 void convertToLower(char* str, int len)
 {
   for (int i = 0; i < len; i++)
   {
-    if (str[i] >= 'A' && str[i] <= 'Z')
+    if (str[i] >= 'a' && str[i] <= 'z')
     {
-      str[i] += 32;
+      str[i] -= 32;
     }
   }
 }
