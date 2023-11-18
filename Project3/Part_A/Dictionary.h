@@ -11,9 +11,9 @@ public:
   void readWords(std::string filename);
   void printWords(void);
   void sortWords(void);
-  void lookupWord(std::string word);
+  bool lookupWord(std::string word);
 private:
-  std::vector<std::string>* wordlist;
+  std::vector<std::string> wordlist;
 };
 
 #endif //DICTIONARY_H
