@@ -3,7 +3,7 @@
 #include "Dictionary.h"
 #include "Grid.h"
 
-const int MIN_LENGTH = 5;
+const int MIN_LENGTH = 3;
 
 void findMatches(Dictionary dict, Grid grid);
 void search(Grid grid, int row, int col, std::vector<std::string> found);
@@ -25,6 +25,7 @@ void findMatches(Dictionary dict, Grid grid)
       search(grid, row, col, found);
 
       for (const std::string &match : found) {
+        std::cout << match << std::endl;
         if (dict.lookupWord(match)) {std::cout << match << std::endl;}
       }
     }
@@ -45,6 +46,7 @@ void search(Grid grid, int row, int col, std::vector<std::string> found)
     while (rd > -1 && rd < grid.getHeight() && cd > -1 && cd < grid.getWidth()) {
       current += grid.getLetter(cd, rd);
       if (current.length() >= MIN_LENGTH) {
+        std::cout << current << std::endl;
         found.push_back(current);
       }
       rd += x[direction];
