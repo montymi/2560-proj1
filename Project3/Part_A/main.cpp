@@ -9,6 +9,10 @@ void findMatches(Dictionary dict, Grid grid);
 void search(Grid grid, int row, int col, std::vector<std::string> found);
 
 int main(){
+  Dictionary dict = Dictionary();
+  Grid grid = Grid("input15.txt");
+  dict.readWords("dictionary.txt");
+  findMatches(dict, grid);
   return 0;
 }
 
@@ -29,8 +33,9 @@ void findMatches(Dictionary dict, Grid grid)
 
 void search(Grid grid, int row, int col, std::vector<std::string> found)
 {
-  int x[] = {};
-  int y[] = {};
+  // directional arrays
+  int x[] = {-1, -1, -1, 0, 0, 1, 1, 1};
+  int y[] = {-1, 0, 1, -1, 1, -1, 0, 1};
 
   for (int direction = 0; direction < 8; direction++) {
     std::string current = "";
