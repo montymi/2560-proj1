@@ -6,7 +6,7 @@
 const int MIN_LENGTH = 3;
 
 void findMatches(Dictionary dict, Grid grid);
-void search(Grid grid, int row, int col, std::vector<std::string> found);
+void search(Dictionary dict, Grid grid, int row, int col);
 
 int main(){
   Dictionary dict = Dictionary();
@@ -21,18 +21,12 @@ void findMatches(Dictionary dict, Grid grid)
   int width = grid.getWidth(), height = grid.getHeight();
   for (int row = 0; row < height; row++) {
     for (int col = 0; col < width; col++) {
-      std::vector<std::string> found;
-      search(grid, row, col, found);
-
-      for (const std::string &match : found) {
-        std::cout << match << std::endl;
-        if (dict.lookupWord(match)) {std::cout << match << std::endl;}
-      }
+      search(dict, grid, row, col);
     }
   }
 }
 
-void search(Grid grid, int row, int col, std::vector<std::string> found)
+void search(Dictionary dict, Grid grid, int row, int col)
 {
   // directional arrays
   int x[] = {-1, -1, -1, 0, 0, 1, 1, 1};
@@ -47,7 +41,7 @@ void search(Grid grid, int row, int col, std::vector<std::string> found)
       current += grid.getLetter(cd, rd);
       if (current.length() >= MIN_LENGTH) {
         std::cout << current << std::endl;
-        found.push_back(current);
+        if (dict.lookupWord(current)) {std::cout << current << std::endl;}
       }
       rd += x[direction];
       cd += y[direction];
