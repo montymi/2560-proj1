@@ -42,7 +42,7 @@ void search(Grid grid, int row, int col, std::vector<std::string> found)
     int rd = row + x[direction];
     int cd = col + y[direction];
 
-    while (rd > -1 && rd < grid.getHeight() && cd > -1 && grid.getWidth()) {
+    while (rd > -1 && rd < grid.getHeight() && cd > -1 && cd < grid.getWidth()) {
       current += grid.getLetter(cd, rd);
       if (current.length() >= MIN_LENGTH) {
         found.push_back(current);
