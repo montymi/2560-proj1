@@ -28,6 +28,9 @@ void findMatches(Dictionary dict, Grid grid)
 
 void search(Dictionary dict, Grid grid, int row, int col)
 {
+  std::cout << "Sorting...\n";
+  dict.sortWords();
+  std::cout << "Sorted.\n";
   // directional arrays
   int x[] = {-1, -1, -1, 0, 0, 1, 1, 1};
   int y[] = {-1, 0, 1, -1, 1, -1, 0, 1};
@@ -40,9 +43,10 @@ void search(Dictionary dict, Grid grid, int row, int col)
     while (rd > -1 && rd < grid.getHeight() && cd > -1 && cd < grid.getWidth()) {
       current += grid.getLetter(cd, rd);
       if (current.length() >= MIN_LENGTH) {
+        if (dict.lookupWord(current) != -1) {std::cout << "MATCH: ";}
         std::cout << current << std::endl;
-        if (dict.lookupWord(current)) {std::cout << current << std::endl;}
       }
+      std::cout << "Adjust direction\n";
       rd += x[direction];
       cd += y[direction];
     }

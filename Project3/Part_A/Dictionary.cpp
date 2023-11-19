@@ -61,6 +61,7 @@ void Dictionary::sortWords(void)
 
 int Dictionary::lookupWord(std::string word)
 {
+  std::cout << "> Checking: " << word << std::endl;
   int top = wordlist.size();
   int bottom = 0;
   int i = top / 2;
