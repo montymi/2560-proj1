@@ -68,10 +68,14 @@ int Dictionary::lookupWord(std::string word)
   {
     if(wordlist[i] > word)
     {
+      if(i == top)
+        i--;
       top = i;
     }
     if (wordlist[i] < word)
     {
+      if(i == bottom)
+        i++;
       bottom = i;
     }
     if (top == bottom)
