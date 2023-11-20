@@ -39,33 +39,7 @@ void searchDirections(Dictionary dict, Grid grid, int row, int col)
     int cd = col;
 
     while (current.length() <= dict.getMax()) {
-      if (rd > -1 && rd < grid.getHeight() && cd > -1 && cd < grid.getWidth()) {
-        current += grid.getLetter(cd, rd);
-      // overflow left
-      } else if (rd < 0 && cd > -1 && cd < grid.getWidth()) {
-        current +=grid.getLetter(cd, grid.getHeight()+rd);
-      // overflow right
-      } else if (rd >= grid.getHeight() && cd > -1 && cd < grid.getWidth()) {
-        current +=grid.getLetter(cd, rd-grid.getHeight());
-      // overflow diag top left
-      } else if (rd < 0 && cd < 0) {
-        current +=grid.getLetter(grid.getWidth()+cd, grid.getHeight()+rd);
-      // overflow diag top right
-      } else if (rd >= grid.getHeight() && cd < 0) {
-        current +=grid.getLetter(grid.getWidth()+cd, rd-grid.getHeight());
-      // overflow diag bottom left
-      } else if (rd < 0 && cd >= grid.getWidth()) {
-        current +=grid.getLetter(cd-grid.getWidth(), grid.getHeight()+rd);
-      // overflow diag bottom right
-      } else if (rd >= grid.getHeight() && cd >= grid.getWidth()) {
-        current +=grid.getLetter(cd-grid.getWidth(), rd-grid.getHeight());
-      // overflow top
-      } else if (rd > -1 && rd < grid.getHeight() && cd < 0) {
-        current +=grid.getLetter(grid.getWidth()+cd, rd);
-      // overflow top
-      } else if (rd > -1 && rd < grid.getHeight() && cd >= grid.getWidth()) {
-        current +=grid.getLetter(cd-grid.getWidth(), rd);
-      }
+      current += grid.getLetter(cd%grid.getWidth(), rd%grid.getHeight());
       if (current.length() >= MIN_LENGTH) {
         if (dict.lookupWord(current) != -1) {std::cout << "MATCH: ";}
         std::cout << current << std::endl;
