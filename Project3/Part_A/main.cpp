@@ -3,10 +3,10 @@
 #include "Dictionary.h"
 #include "Grid.h"
 
-const int MIN_LENGTH = 3;
+const int MIN_LENGTH = 5;
 
 void findMatches(Dictionary dict, Grid grid);
-void search(Dictionary dict, Grid grid, int row, int col);
+void searchDirections(Dictionary dict, Grid grid, int row, int col);
 
 int main(){
   Dictionary dict = Dictionary();
@@ -21,24 +21,22 @@ void findMatches(Dictionary dict, Grid grid)
   int width = grid.getWidth(), height = grid.getHeight();
   for (int row = 0; row < height; row++) {
     for (int col = 0; col < width; col++) {
-      search(dict, grid, row, col);
+      searchDirections(dict, grid, row, col);
     }
   }
 }
 
-void search(Dictionary dict, Grid grid, int row, int col)
+void searchDirections(Dictionary dict, Grid grid, int row, int col)
 {
-  std::cout << "Sorting...\n";
   dict.sortWords();
-  std::cout << "Sorted.\n";
   // directional arrays
   int x[] = {-1, -1, -1, 0, 0, 1, 1, 1};
   int y[] = {-1, 0, 1, -1, 1, -1, 0, 1};
 
   for (int direction = 0; direction < 8; direction++) {
     std::string current = "";
-    int rd = row + x[direction];
-    int cd = col + y[direction];
+    int rd = row;
+    int cd = col;
 
     while (rd > -1 && rd < grid.getHeight() && cd > -1 && cd < grid.getWidth()) {
       current += grid.getLetter(cd, rd);
@@ -46,7 +44,6 @@ void search(Dictionary dict, Grid grid, int row, int col)
         if (dict.lookupWord(current) != -1) {std::cout << "MATCH: ";}
         std::cout << current << std::endl;
       }
-      std::cout << "Adjust direction\n";
       rd += x[direction];
       cd += y[direction];
     }
