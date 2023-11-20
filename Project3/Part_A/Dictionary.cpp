@@ -74,7 +74,7 @@ int Dictionary::lookupWord(std::string word)
     {
       bottom = i;
     }
-    if (top == bottom)
+    if (top - bottom <= 1)
     {
       return -1;
     }
