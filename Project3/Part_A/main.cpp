@@ -38,7 +38,7 @@ void searchDirections(Dictionary dict, Grid grid, int row, int col)
     int rd = row;
     int cd = col;
 
-    while (rd > -1 && rd < grid.getHeight() && cd > -1 && cd < grid.getWidth()) {
+    while (current.length() <= dict.getMax()) {
       if (rd > -1 && rd < grid.getHeight() && cd > -1 && cd < grid.getWidth()) {
         current += grid.getLetter(cd, rd);
       // overflow left
