@@ -39,7 +39,7 @@ void searchDirections(Dictionary dict, Grid grid, int row, int col)
     int cd = col;
 
     while (current.length() <= dict.getMax()) {
-      current += grid.getLetter(cd%grid.getWidth(), rd%grid.getHeight());
+      current += grid.getLetter((((cd % grid.getWidth()) + grid.getWidth()) % grid.getWidth()), (((rd % grid.getHeight()) + grid.getHeight()) % grid.getHeight()));
       if (current.length() >= MIN_LENGTH) {
         if (dict.lookupWord(current) != -1) {std::cout << "MATCH: ";}
         std::cout << current << std::endl;
