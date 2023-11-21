@@ -12,8 +12,10 @@ public:
   void printWords(void);
   void sortWords(void);
   int lookupWord(std::string word);
+  int getMax(void);
 private:
   std::vector<std::string> wordlist;
+  int longestWord;
 };
 
 #endif //DICTIONARY_H
