@@ -20,6 +20,7 @@ void Dictionary::readWords(std::string filename)
   while(getline(infile, next))
   {
     wordlist.push_back(next);
+    convertToLower(&wordlist[wordlist.size()-1][0], wordlist[wordlist.size()-1].length());
     if (wordlist[wordlist.size()-1].length() > longestWord)
     {
       longestWord = wordlist[wordlist.size()-1].length();
@@ -40,10 +41,6 @@ void Dictionary::selectionSort(void)
   if (wordlist.size() == 0)
   {
     return;
-  }
-  for (int i = 0; i < wordlist.size(); i++)
-  {
-    convertToLower(&wordlist[i][0], wordlist[i].length());
   }
   int current_word = 0;
   std::string first = wordlist[0], temp;
@@ -68,9 +65,9 @@ void Dictionary::selectionSort(void)
 
 void Dictionary::quickSort(void)
 {
-  for (int i = 0; i < wordlist.size(); i++)
+  if (wordlist.size() == 0)
   {
-    convertToLower(&wordlist[i][0], wordlist[i].length());
+    return;
   }
   this->quickSort(0,wordlist.size()-1);
 }
