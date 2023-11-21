@@ -10,10 +10,13 @@ public:
   Dictionary(void);
   void readWords(std::string filename);
   void printWords(void);
-  void sortWords(void);
+  void selectionSort(void);
+  void quickSort(void);
   int lookupWord(std::string word);
   int getMax(void);
 private:
+  void quickSort(int low, int high);
+  int partition(int low, int high);
   std::vector<std::string> wordlist;
   int longestWord;
 };

@@ -35,7 +35,7 @@ void Dictionary::printWords(void)
   }
 }
 
-void Dictionary::sortWords(void)
+void Dictionary::selectionSort(void)
 {
   if (wordlist.size() == 0)
   {
@@ -62,6 +62,17 @@ void Dictionary::sortWords(void)
     first = wordlist[i + 1];
     current_word = i + 1;
   }
+}
+
+
+
+void Dictionary::quickSort(void)
+{
+  for (int i = 0; i < wordlist.size(); i++)
+  {
+    convertToLower(&wordlist[i][0], wordlist[i].length());
+  }
+  this->quickSort(0,wordlist.size()-1);
 }
 
 int Dictionary::lookupWord(std::string word)
@@ -91,6 +102,39 @@ int Dictionary::lookupWord(std::string word)
 int Dictionary::getMax(void)
 {
   return longestWord;
+}
+
+void Dictionary::quickSort(int low, int high)
+{
+  if (high <= low)
+  {
+    return;
+  }
+  int pivot = this->partition(low,high);
+  
+  this->quickSort(low, pivot-1);
+  this->quickSort(pivot+1, high);
+}
+
+int Dictionary::partition(int low, int high)
+{
+  int i = low;
+  std::string temp;
+  std::string pivotStr = wordlist[high];
+  for(int j = low; j < high; j++)
+  {
+    if(wordlist[j] < pivotStr)
+    {
+      temp = wordlist[i];
+      wordlist[i] = wordlist[j];
+      wordlist[j] = temp;
+      i++;
+    }
+  }
+  temp = wordlist[i];
+  wordlist[i] = wordlist[high];
+  wordlist[high] = temp;
+  return i;
 }
 
 void convertToLower(char* str, int len)
