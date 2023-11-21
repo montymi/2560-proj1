@@ -10,6 +10,7 @@ void convertToLower(char* str, int len);
 Dictionary::Dictionary(void)
 {
   wordlist = std::vector<std::string>();
+  longestWord = 0;
 }
 
 void Dictionary::readWords(std::string filename)
@@ -19,6 +20,10 @@ void Dictionary::readWords(std::string filename)
   while(getline(infile, next))
   {
     wordlist.push_back(next);
+    if (wordlist[wordlist.size()-1].length() > longestWord)
+    {
+      longestWord = wordlist[wordlist.size()-1].length();
+    }
   }
 }
 
@@ -74,13 +79,18 @@ int Dictionary::lookupWord(std::string word)
     {
       bottom = i;
     }
-    if (top == bottom)
+    if (top - bottom <= 1)
     {
       return -1;
     }
     i = ((top - bottom) / 2) + bottom;
   }
   return i;
+}
+
+int Dictionary::getMax(void)
+{
+  return longestWord;
 }
 
 void convertToLower(char* str, int len)
