@@ -10,7 +10,7 @@ void findMatches(Dictionary dict, Grid grid);
 void searchDirections(Dictionary dict, Grid grid, int row, int col);
 
 int main(){
-  search(0);
+  search(1);
 }
 
 void findMatches(Dictionary dict, Grid grid)
@@ -53,16 +53,16 @@ void search(int algorithm)
   switch(algorithm)
   {
     case 0:
-      dict.sortWords(); //TODO: change to selectionSort() once changed in Dictionary
+      dict.selectionSort();
       break;
     case 1:
-      //dict.quickSort(); TODO: uncomment once iplemented
+    dict.quickSort();
       break;
     case 2:
       //dict.heapSort(); TODO: uncomment once implemented
       break;
     default:
-      //dict.quickSort(); TODO: uncomment once implemented
+      dict.quickSort();
       break;
   }
   std::string filename;
