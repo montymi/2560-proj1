@@ -12,8 +12,9 @@ int main(){
   Dictionary dict = Dictionary();
   Grid grid = Grid("input15.txt");
   dict.readWords("dictionary.txt");
-  dict.sortWords();
-  findMatches(dict, grid);
+  dict.quickSort();
+  //findMatches(dict, grid);
+  dict.printWords();
   return 0;
 }
 
