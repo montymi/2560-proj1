@@ -5,16 +5,13 @@
 
 const int MIN_LENGTH = 5;
 
+void search(int algorithm);
 void findMatches(Dictionary dict, Grid grid);
 void searchDirections(Dictionary dict, Grid grid, int row, int col);
 
 int main(){
-  Dictionary dict = Dictionary();
-  Grid grid = Grid("input15.txt");
-  dict.readWords("dictionary.txt");
-  dict.heapSort();
-  findMatches(dict, grid);
-  return 0;
+  search(1);
+  search(2);
 }
 
 void findMatches(Dictionary dict, Grid grid)
@@ -47,4 +44,31 @@ void searchDirections(Dictionary dict, Grid grid, int row, int col)
       cd += y[direction];
     }
   }
+}
+
+void search(int algorithm)
+{
+  Dictionary dict = Dictionary();
+  dict.readWords("dictionary.txt");
+  
+  switch(algorithm)
+  {
+    case 0:
+      dict.selectionSort();
+      break;
+    case 1:
+    dict.quickSort();
+      break;
+    case 2:
+      dict.heapSort(); 
+      break;
+    default:
+      dict.quickSort();
+      break;
+  }
+  std::string filename;
+  std::cout << "Please enter the name of the file containing the grid: ";
+  std::cin >> filename;
+  Grid grid = Grid(filename);
+  findMatches(dict, grid);
 }
