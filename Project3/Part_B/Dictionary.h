@@ -13,6 +13,7 @@ public:
   void sortWords(void);
   int lookupWord(std::string word);
   int getMax(void);
+  void heapSort(void);
 private:
   std::vector<std::string> wordlist;
   int longestWord;
