@@ -94,8 +94,9 @@ void Dictionary::heapSort(void) {
   for (const auto& word: wordlist) {
     maxheap.insert(word);
   }
-  maxheap.initializeMaxHeap();
+  maxheap.initializeMaxHeapSort();
   for (int i = wordlist.size() - 1; i > 0; i--) {
+    std::cout << maxheap.getItem(i) << std::endl;
     wordlist[i] = maxheap.getItem(i);
   }
 }

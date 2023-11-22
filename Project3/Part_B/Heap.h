@@ -3,27 +3,16 @@
 template <typename T>
 class heap {
 public:
-  void initializeMaxHeap(void) { buildMaxHeap(); }
+  void initializeMaxHeapSort(void) { maxHeapSort(); }
   T getItem(int i) { return item_list[i]; }
   void insert(T value) { item_list.push_back(value); }
   int size(void) { return item_list.size(); }
-  void heapsort(void) 
-  {
-    buildMaxHeap();
-    int size = item_list.size();
-    for (int i = size; i > 1; i--) {
-      std::swap(item_list[1], item_list[i]);
-      size -= 1;
-      maxHeapify(1, size);
-    }
-  }
-
 private:
   std::vector<T> item_list;
   int parent(int i) { return (i - 1) / 2; }
   int child_left(int i) { return 2 * i + 1; }
   int child_right(int i) { return 2 * i + 2; }
-  void maxHeapify(int i, int size)
+  void maxHeapify(int size, int i)
   {
     int largest = i;
     int l = child_left(i);
@@ -32,14 +21,18 @@ private:
     if (r < size && item_list[r] > item_list[largest]) { largest = r; }
     if (largest != i) {
       std::swap(item_list[i], item_list[largest]);
-      maxHeapify(largest, size);
+      maxHeapify(size, largest);
     }
   }
-  void buildMaxHeap(void) 
+  void maxHeapSort(void) 
   {
-    int size = item_list.size();
-    for (int i = size / 2; i > 0; i--) {
-      maxHeapify(i, size);
+    int N = this->size();
+    for (int i = N / 2 - 1; i >= 9; i--)
+      maxHeapify(i, N);
+    for (int i = N - 1; i > 0; i--) {
+      std::swap(item_list[0], item_list[i]);
+      maxHeapify(i, 0);
     }
   }
+
 };
