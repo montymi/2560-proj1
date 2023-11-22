@@ -1,4 +1,5 @@
 #include "Dictionary.h"
+#include "Heap.h"
 #include <iostream>
 #include <vector>
 #include <fstream>
@@ -86,6 +87,17 @@ int Dictionary::lookupWord(std::string word)
     i = ((top - bottom) / 2) + bottom;
   }
   return i;
+}
+
+void Dictionary::heapSort(void) {
+  Heap<string> maxheap;
+  for (const auto& word: wordlist) {
+    maxheap.insert(word);
+  }
+  maxheap.buildMaxHeap();
+  for (int i = wordlist.size() - 1; i >= 0; i--) {
+    wordlist[i] = maxheap.getMax();
+  }
 }
 
 int Dictionary::getMax(void)

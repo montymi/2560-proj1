@@ -12,6 +12,7 @@ public:
   void printWords(void);
   void sortWords(void);
   int lookupWord(std::string word);
+  void heapSort(void);
   int getMax(void);
 private:
   std::vector<std::string> wordlist;
