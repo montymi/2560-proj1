@@ -7,12 +7,14 @@ public:
   T getItem(int i) { return item_list[i]; }
   void insert(T value) { item_list.push_back(value); }
   int size(void) { return item_list.size(); }
-  
   void heapsort(void) 
   {
+    buildMaxHeap();
     int size = item_list.size();
-    for (int i = size / 2 -1; i >= 0; i--) {
-      maxHeapify(i, size);
+    for (int i = size; i > 1; i--) {
+      std::swap(item_list[1], item_list[i]);
+      size -= 1;
+      maxHeapify(1, size);
     }
   }
 
@@ -21,7 +23,6 @@ private:
   int parent(int i) { return (i - 1) / 2; }
   int child_left(int i) { return 2 * i + 1; }
   int child_right(int i) { return 2 * i + 2; }
-  
   void maxHeapify(int i, int size)
   {
     int largest = i;
@@ -34,12 +35,11 @@ private:
       maxHeapify(largest, size);
     }
   }
-  
   void buildMaxHeap(void) 
   {
-    int maxHeapSize = item_list.size();
-    for (int i = maxHeapSize / 2 - 1; i >= 0; i--) {
-      maxHeapify(i, maxHeapSize);
+    int size = item_list.size();
+    for (int i = size / 2; i > 0; i--) {
+      maxHeapify(i, size);
     }
   }
 };
