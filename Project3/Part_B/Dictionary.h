@@ -14,6 +14,7 @@ public:
   void quickSort(void);
   int lookupWord(std::string word);
   int getMax(void);
+  void heapSort(void);
 private:
   void quickSort(int low, int high);
   int partition(int low, int high);

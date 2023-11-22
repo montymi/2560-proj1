@@ -11,6 +11,7 @@ void searchDirections(Dictionary dict, Grid grid, int row, int col);
 
 int main(){
   search(1);
+  search(2);
 }
 
 void findMatches(Dictionary dict, Grid grid)
@@ -59,7 +60,7 @@ void search(int algorithm)
     dict.quickSort();
       break;
     case 2:
-      //dict.heapSort(); TODO: uncomment once implemented
+      dict.heapSort(); 
       break;
     default:
       dict.quickSort();
