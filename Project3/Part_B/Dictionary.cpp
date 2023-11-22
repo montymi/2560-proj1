@@ -90,7 +90,7 @@ int Dictionary::lookupWord(std::string word)
 }
 
 void Dictionary::heapSort(void) {
-  heap<std::string> maxheap;
+  Heap<std::string> maxheap;
   for (const auto& word: wordlist) {
     maxheap.insert(word);
   }
