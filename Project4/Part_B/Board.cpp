@@ -245,7 +245,7 @@ bool Board::checkConflict(char type, int num, int val)
 }
 
 int getSubGroup(int i, int j) {
-    // Divide the row and column indices by 3 to determine the subgroup
+  // Divide the row and column indices by 3 to determine the subgroup
   int subgroupRow = (i-1) / SquareSize;
   int subgroupCol = (j-1) / SquareSize;
 

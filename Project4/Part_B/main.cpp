@@ -57,7 +57,7 @@ bool solveBoard(Board& board, int& recursions)
   {
     for (int col = 1; col <= SquareSize*SquareSize; col++)
     {
-      for (int val = getValMin(); val < getValMax(); val++)
+      for (int val = getValMin(); val <= getValMax(); val++)
       {
         if ((board.isBlank(row,col)) && board.checkConflict(row,col,val))
         {
@@ -69,6 +69,7 @@ bool solveBoard(Board& board, int& recursions)
         std::cout << "solved (" << row << ", " << col << ") with val " << possibleValues[0] << "\n";
         board.setCell(row, col, possibleValues[0]);
         solvedValues++;
+        board.printConflicts();
       }
       possibleValues = std::vector<int>(0);
     }
@@ -127,6 +128,7 @@ bool solveBoard(Board& board, int& recursions)
         candidateCells = std::vector<int>(0);
       }
       //TODO: check box for value
+      
     }
   }
   
