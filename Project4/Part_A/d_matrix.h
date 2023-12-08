@@ -108,7 +108,6 @@ void matrix<T>::resize(int numRows, int numCols)
    // resize each row to have nCols columns
    for (i=0; i < nRows; i++)
       mat[i].resize(nCols);
-   std::cout << "Resized";
 }
 
 #endif	// MATRIX_CLASS

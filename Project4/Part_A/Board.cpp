@@ -1,4 +1,3 @@
-#include <ios>
 #include <iostream>
 #include <limits.h>
 #include "d_matrix.h"
@@ -176,6 +175,7 @@ void Board::printConflicts(void)
   std::cout << endl;
   std::cout << endl;
 }
+
 bool Board::setCell(int i, int j, int c)
 {
   if (i < 1 || i > BoardSize || j < 1 || j > BoardSize || c < 1 || c > BoardSize)
