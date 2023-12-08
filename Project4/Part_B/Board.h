@@ -11,6 +11,9 @@ const int SquareSize = 3; // The number of cells in a small square
 // SquareSize^2 rows and SquareSize^2
 // columns.
 
+int getValMin();
+int getValMax();
+
 
 class Board
 // Stores the entire Sudoku board
@@ -26,6 +29,7 @@ public:
   void printConflicts(void);
   bool setCell(int, int, int);
   bool checkSolved(void);
+  bool checkConflict(int r, int c, int val);
 private:
 // The following matrices go from 1 to BoardSize in each
 // dimension, i.e., they are each (BoardSize+1) * (BoardSize+1)

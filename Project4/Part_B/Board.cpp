@@ -214,6 +214,11 @@ bool Board::checkSolved(void)
   return true;
 }
 
+bool Board::checkConflict(int r, int c, int val)
+{
+  return (!(column[c][val] || row[r][val] || box[getSubGroup(r,c)][val]));
+}
+
 int getSubGroup(int i, int j) {
     // Divide the row and column indices by 3 to determine the subgroup
   int subgroupRow = (i-1) / SquareSize;
@@ -224,3 +229,11 @@ int getSubGroup(int i, int j) {
   return subgroup;
 }
 
+int getValMin()
+{
+  return MinValue;
+}
+int getValMax()
+{
+  return MaxValue;
+}
