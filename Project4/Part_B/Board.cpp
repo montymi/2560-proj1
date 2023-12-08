@@ -227,8 +227,6 @@ bool Board::checkConflict(char type, int num, int val)
     case 'c':
     case 'C':
     case 0:
-      for (int i = 0; i < 10; i++)
-        column[num][i];
       return !column[num][val];
       break;
     case 'r':

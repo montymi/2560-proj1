@@ -66,10 +66,8 @@ bool solveBoard(Board& board, int& recursions)
       }
       if(possibleValues.size() == 1)
       {
-        std::cout << "solved (" << row << ", " << col << ") with val " << possibleValues[0] << "\n";
         board.setCell(row, col, possibleValues[0]);
         solvedValues++;
-        board.printConflicts();
       }
       possibleValues = std::vector<int>(0);
     }
@@ -84,20 +82,12 @@ bool solveBoard(Board& board, int& recursions)
       {
         for(short j = 1; j <= SquareSize*SquareSize; j++)
         {
-          std::cout << "row " << i << ", col " << j  << ", val " << val <<" is:";
           if (board.isBlank(i,j) && board.checkConflict(i,j,val))
-          {
             candidateCells.push_back((i << 16) + j);
-            std::cout << " CANDIDATE\n";
-          }
-          else
-            std::cout << " not possible\n";
         }
         if(candidateCells.size() == 1)
         {
-          int a = (candidateCells[0] & 0xFFFF0000) >> 16, b = (candidateCells[0] & 0xFFFF);
           board.setCell((candidateCells[0] & 0xFFFF0000) >> 16, (candidateCells[0] & 0xFFFF), val);
-          std::cout << "Placing " << val << " in cell (" << a << "," << b << ")\n";
           solvedValues++;
         }
         candidateCells = std::vector<int>(0);
@@ -107,28 +97,33 @@ bool solveBoard(Board& board, int& recursions)
       {
         for(short j = 1; j <= SquareSize*SquareSize; j++)
         {
-          std::cout << "row " << j << ", col " << i  << ", val " << val <<" is:";
           if (board.isBlank(j,i) && board.checkConflict(j,i,val))
-          {
             candidateCells.push_back((j << 16) + i);
-            std::cout << " CANDIDATE\n";
-          }
-          else
-          {
-            std::cout << " not possible\n";
-          }
         }
         if(candidateCells.size() == 1)
         {
-          int a = (candidateCells[0] & 0xFFFF0000) >> 16, b = (candidateCells[0] & 0xFFFF);
           board.setCell((candidateCells[0] & 0xFFFF0000) >> 16, (candidateCells[0] & 0xFFFF), val);
-          std::cout << "Placing " << val << " in cell (" << a << "," << b << ")\n";
           solvedValues++;
         }
         candidateCells = std::vector<int>(0);
       }
       //TODO: check box for value
-      
+      if (board.checkConflict('b',i,val))
+      {
+        for(short j = 1; j <= SquareSize*SquareSize; j++)
+        {
+          int r = (3*((i-1)/3))+((j-1)/3)+1; // convert from house and
+          int c = (3*((i-1)%3))+((j-1)%3)+1; // cell to row and column
+          if (board.isBlank(r,c) && board.checkConflict(r,c,val))
+            candidateCells.push_back((r << 16) + c);
+        }
+        if(candidateCells.size() == 1)
+        {
+          board.setCell((candidateCells[0] & 0xFFFF0000) >> 16, (candidateCells[0] & 0xFFFF), val);
+          solvedValues++;
+        }
+        candidateCells = std::vector<int>(0);
+      }
     }
   }
   
