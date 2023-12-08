@@ -14,6 +14,7 @@ const int MaxValue = 9;
 int numSolutions = 0;
 
 bool checkBox(matrix<ValueType> value, int i, int j, int c);
+int getSubGroup(int i, int j);
 
 Board::Board(int sqSize)
 // Board constructor
@@ -158,7 +159,6 @@ void Board::printConflicts(void)
     }
     std::cout << endl;
   }
-  /*
   cout << "Box Conflicts\n";
   for (int i = 1; i <= BoardSize; i++)
   {
@@ -170,8 +170,8 @@ void Board::printConflicts(void)
       else
         std::cout << "F ";
     }
+    std::cout << endl;
   }
-  */
   std::cout << endl;
   std::cout << endl;
 }
@@ -181,7 +181,7 @@ bool Board::setCell(int i, int j, int c)
   if (i < 1 || i > BoardSize || j < 1 || j > BoardSize || c < 1 || c > BoardSize)
     throw rangeError("bad value in setCell");
 
-  if (row[i][c] || column[j][c])
+  if (row[i][c] || column[j][c] || box[getSubGroup(i,j)][c])
     throw overflowError("value already in conflicts vectors");
 
   if (getCell(i, j) != Blank) {
@@ -191,6 +191,7 @@ bool Board::setCell(int i, int j, int c)
     value[i][j] = c;
     row[i][c] = true;
     column[j][c] = true;
+    box[getSubGroup(i,j)][c] = true;
   }
 
   return (getCell(i, j) == c);
@@ -207,4 +208,14 @@ bool Board::checkSolved(void)
     }
   }
   return true;
+}
+
+int getSubGroup(int i, int j) {
+    // Divide the row and column indices by 3 to determine the subgroup
+  int subgroupRow = (i-1) / SquareSize;
+  int subgroupCol = (j-1) / SquareSize;
+
+  // Calculate the subgroup number (1 through 9)
+  int subgroup = subgroupRow * 3 + subgroupCol + 1;
+  return subgroup;
 }
