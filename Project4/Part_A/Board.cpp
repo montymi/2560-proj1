@@ -45,6 +45,7 @@ void Board::clear(int i, int j)
   setCell(i, j, Blank);
   row[i][val] = false;
   column[j][val] = false;
+  box[getSubGroup(i,j)][val] = false;
 }
 
 void Board::initialize(ifstream &fin)
