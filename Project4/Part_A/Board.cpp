@@ -207,6 +207,8 @@ bool Board::checkSolved(void)
     {
       if (isBlank(i, j) || !row[i][j] || !column[i][j])
         return false;
+      for (int val = 1; val <= BoardSize; val++)
+        if (!box[getSubGroup(i,j)][val]) return false;
     }
   }
   return true;
