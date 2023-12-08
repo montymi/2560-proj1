@@ -35,7 +35,8 @@ void Board::clear()
       value[i][j] = Blank;
       row[i][j] = false;
       column[i][j] = false;
-      box[i][j] = false;
+      for (int val = 1; val <= BoardSize; val++)
+        box[getSubGroup(i,j)][val] = false;
     }
 }
 
