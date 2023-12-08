@@ -13,11 +13,15 @@ const int MinValue = 1;
 const int MaxValue = 9;
 int numSolutions = 0;
 
-void setCell(int a, int b, char c);
+bool checkBox(matrix<ValueType> value, int i, int j, int c);
+int getSubGroup(int i, int j);
 
 Board::Board(int sqSize)
-  : value(BoardSize+1,BoardSize+1)
 // Board constructor
+: value(BoardSize+1,BoardSize+1),
+  row(BoardSize+1,BoardSize+1),
+  column(BoardSize+1,BoardSize+1),
+  box(BoardSize+1,BoardSize+1)
 {
   clear();
 }
@@ -29,7 +33,20 @@ void Board::clear()
     for (int j = 1; j <= BoardSize; j++)
     {
       value[i][j] = Blank;
+      row[i][j] = false;
+      column[i][j] = false;
+      for (int val = 1; val <= BoardSize; val++)
+        box[getSubGroup(i,j)][val] = false;
     }
+}
+
+void Board::clear(int i, int j) 
+{
+  ValueType val = getCell(i, j);
+  setCell(i, j, Blank);
+  row[i][val] = false;
+  column[j][val] = false;
+  box[getSubGroup(i,j)][val] = false;
 }
 
 void Board::initialize(ifstream &fin)
@@ -78,7 +95,7 @@ bool Board::isBlank(int i, int j)
 // Returns true if cell i,j is blank, and false otherwise.
 {
   if (i < 1 || i > BoardSize || j < 1 || j > BoardSize)
-    throw rangeError("bad value in setCell");
+    throw rangeError("bad value in isBlank");
   return (getCell(i,j) == Blank);
 }
 
@@ -100,7 +117,7 @@ void Board::print()
       if ((j-1) % SquareSize == 0)
         std::cout << "|";
       if (!isBlank(i,j))
-        std::cout << " " << getCell(i,j) << " ";
+        std::cout << getCell(i,j);
       else
         std::cout << " ";
     }
@@ -111,16 +128,98 @@ void Board::print()
   for (int j = 1; j <= BoardSize; j++)
     std::cout << "---";
   std::cout << "-";
-  std::cout << std::endl;
+  std::cout << "\n\n";
 }
 
 
 void Board::printConflicts(void)
-{}
-
-void setCell(int a, int b, char c)
 {
-  (void) a;
-  (void) b;
-  (void) c;
-}   
+  // row 
+  cout << "Row Conflicts\n";
+  for (int i = 1; i <= BoardSize; i++)
+  {
+    std::cout << "Row " + std::to_string(i) + ": ";
+    for (int j = 1; j <= BoardSize; j++)
+    {
+      if (row[i][j])
+        std::cout << "T ";
+      else
+        std::cout << "F ";
+    }
+    std::cout << endl;
+  }
+  cout << "Column Conflicts\n";
+  for (int i = 1; i <= BoardSize; i++)
+  {
+    std::cout << "Column " + std::to_string(i) + ": ";
+    for (int j = 1; j <= BoardSize; j++)
+    {
+      if (column[i][j])
+        std::cout << "T ";
+      else
+        std::cout << "F ";
+    }
+    std::cout << endl;
+  }
+  cout << "Box Conflicts\n";
+  for (int i = 1; i <= BoardSize; i++)
+  {
+    std::cout << "Box " + std::to_string(i) + ": ";
+    for (int j = 1; j <= BoardSize; j++)
+    {
+      if (box[i][j])
+        std::cout << "T ";
+      else
+        std::cout << "F ";
+    }
+    std::cout << endl;
+  }
+  std::cout << endl;
+  std::cout << endl;
+}
+
+bool Board::setCell(int i, int j, int c)
+{
+  if (i < 1 || i > BoardSize || j < 1 || j > BoardSize || c < 1 || c > BoardSize)
+    throw rangeError("bad value in setCell");
+
+  if (row[i][c] || column[j][c] || box[getSubGroup(i,j)][c])
+    throw overflowError("value already in conflicts vectors");
+
+  if (getCell(i, j) != Blank) {
+    throw overflowError("Position: " + std::to_string(i) + "," + std::to_string(j) +
+                        " already has value " + std::to_string(getCell(i, j)));
+  } else {
+    value[i][j] = c;
+    row[i][c] = true;
+    column[j][c] = true;
+    box[getSubGroup(i,j)][c] = true;
+  }
+
+  return (getCell(i, j) == c);
+}
+
+bool Board::checkSolved(void)
+{
+  for (int i = 1; i <= BoardSize; i++)
+  {
+    for (int j = 1; j <= BoardSize; j++)
+    {
+      if (isBlank(i, j) || !row[i][j] || !column[i][j])
+        return false;
+      for (int val = 1; val <= BoardSize; val++)
+        if (!box[getSubGroup(i,j)][val]) return false;
+    }
+  }
+  return true;
+}
+
+int getSubGroup(int i, int j) {
+    // Divide the row and column indices by 3 to determine the subgroup
+  int subgroupRow = (i-1) / SquareSize;
+  int subgroupCol = (j-1) / SquareSize;
+
+  // Calculate the subgroup number (1 through 9)
+  int subgroup = subgroupRow * 3 + subgroupCol + 1;
+  return subgroup;
+}
