@@ -219,6 +219,31 @@ bool Board::checkConflict(int r, int c, int val)
   return (!(column[c][val] || row[r][val] || box[getSubGroup(r,c)][val]));
 }
 
+
+bool Board::checkConflict(char type, int num, int val)
+{
+  switch (type)
+  {
+    case 'c':
+    case 'C':
+    case 0:
+      for (int i = 0; i < 10; i++)
+        column[num][i];
+      return !column[num][val];
+      break;
+    case 'r':
+    case 'R':
+    case 1:
+      return !row[num][val];
+    case 'b':
+    case 'B':
+    case 2:
+      return !box[num][val];
+    default:
+      return true;
+  }
+}
+
 int getSubGroup(int i, int j) {
     // Divide the row and column indices by 3 to determine the subgroup
   int subgroupRow = (i-1) / SquareSize;
