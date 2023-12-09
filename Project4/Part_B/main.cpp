@@ -8,7 +8,7 @@ bool solveBoard(Board& board, int& recursions);
 int main()
 {
   int totalRecursions = 0;
-  vector<float> recursionList;
+  int numPuzzles = 0;
   ifstream fin;
   // Read the sample grid from the file.
   string fileName = "sudoku.txt";
@@ -38,7 +38,7 @@ int main()
           std::cout << "no solution found after " << recursions << " recursions\n\n";
         }
         totalRecursions += recursions;
-        recursionList.push_back(recursions);
+        numPuzzles += 1;
       }
       catch (overflowError &ex)
       {
@@ -46,7 +46,7 @@ int main()
       }
     }
     std::cout << "total recursions: " << totalRecursions << std::endl;
-    std::cout << "average recursions: " << std::accumulate(recursionList.begin(), recursionList.end(),0) / recursionList.size() << std::endl;
+    std::cout << "average recursions: " << totalRecursions / numPuzzles << std::endl;
   }
   catch (indexRangeError &ex)
   {

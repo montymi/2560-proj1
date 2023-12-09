@@ -117,9 +117,9 @@ void Board::print()
       if ((j-1) % SquareSize == 0)
         std::cout << "|";
       if (!isBlank(i,j))
-        std::cout << getCell(i,j);
+        std::cout << " " << getCell(i,j) << " ";
       else
-        std::cout << " ";
+        std::cout << "   ";
     }
     std::cout << "|";
     std::cout << endl;
