@@ -23,7 +23,6 @@ int main()
       int recursions = 0;
       b1.initialize(fin);
       b1.print();
-      b1.printConflicts();
       try{
         if(solveBoard(b1, recursions))
         {
