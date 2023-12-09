@@ -1,4 +1,5 @@
 #include <iostream>
+#include <numeric>
 #include <vector>
 #include "Board.h"
 
@@ -6,6 +7,8 @@ bool solveBoard(Board& board, int& recursions);
 
 int main()
 {
+  int totalRecursions = 0;
+  vector<float> recursionList;
   ifstream fin;
   // Read the sample grid from the file.
   string fileName = "sudoku.txt";
@@ -34,12 +37,16 @@ int main()
           b1.print();
           std::cout << "no solution found after " << recursions << " recursions\n\n";
         }
+        totalRecursions += recursions;
+        recursionList.push_back(recursions);
       }
       catch (overflowError &ex)
       {
         cout << ex.what() << endl;
       }
     }
+    std::cout << "total recursions: " << totalRecursions << std::endl;
+    std::cout << "average recursions: " << std::accumulate(recursionList.begin(), recursionList.end(),0) / recursionList.size() << std::endl;
   }
   catch (indexRangeError &ex)
   {
